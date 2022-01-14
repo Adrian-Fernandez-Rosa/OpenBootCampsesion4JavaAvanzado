@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "b9ddff97-0cc0-4f1f-99bb-86531272ad51",
+		"name": "Open Bootcamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar todos los usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Estado es 200 \", function() {\r",
+							"\r",
+							"        pm.response.to.have.status(200 );\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Primer elemento es uno\", function() {\r",
+							"    reply = pm.response.json();\r",
+							"    pm.expect(reply[0].nombre).to.eql(\"uno\");\r",
+							"});\r",
+							"\r",
+							"//prueba de latencia\r",
+							"\r",
+							"pm.test(\"Respuesta en menos de 10ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(10)\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/bootcampers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"bootcampers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"test\",\r\n   \"valor\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/bootcampers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"bootcampers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ejercicio 1 obtener uno",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/bootcampers/uno",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"bootcampers",
+						"uno"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ejercicio 1 B obtener tres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/bootcampers/tres",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"bootcampers",
+						"tres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ejercicio 2 A",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/12",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ejercicio 2B",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"MinisterioDelTiempo\",\r\n    \"job\": \"Serie\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:9000",
+			"type": "default"
+		}
+	]
+}
